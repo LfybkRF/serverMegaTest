@@ -1,15 +1,14 @@
-version: '3.1'
-volumes:
-  pg_timeweb:
+version: '3'
+
 services:
-  pg_db:
-    image: postgres
-    restart: always
-    environment:
-      - POSTGRES_PASSWORD=megatest
-      - POSTGRES_USER=megatest
-      - POSTGRES_DB=megatest
-    volumes:
-      - pg_project:/var/lib/postgresql/data
+
+  database:
+    image: 'postgres'
+
     ports:
-      - ${POSTGRES_PORT:-5432}:5432
+      - 5432:5432
+
+    environment:
+      POSTGRES_USER: megatest
+      POSTGRES_PASSWORD: megatest
+      POSTGRES_DB: megatest

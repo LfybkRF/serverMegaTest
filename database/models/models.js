@@ -8,7 +8,8 @@ const User = sequelize.define('user', {
 })
 
 const Groups = sequelize.define('groups', {
-    id: {type: DataTypes.INTEGER, primaryKey: true},
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    groupId : {type : DataTypes.INTEGER},
     type: {type: DataTypes.STRING}
 })
 

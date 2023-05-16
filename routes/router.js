@@ -13,6 +13,6 @@ router.post("/addGroup", controller.addGroup); // admin
 router.delete("/delGroup", controller.delGroup); // admin
 
 router.post("/setdata", controller.setDataApp); // admin
-router.get("/getdata", controller.getDataApp); // admin
+router.get("/getdata", controller.getDataApp); // client, admin
 
 module.exports = router;

@@ -15,10 +15,7 @@ class controller {
     async addUser(req, res) {
         try {
             const {id, token, name} = req.body;
-            const candidate = await findOne({where: {id}});
-            if (candidate) {
-                return res.json({status: false, message: "Пользователь уже существует"});
-            }
+            
             const user = await User.create({id : id, token : token, name: name});
             return res.json({status: true, message: "Пользователь успешно добавлен"});
         } catch(e) {
@@ -29,7 +26,16 @@ class controller {
 
     
     async postPhoto(req, res) {
-
+        try {
+            const users = await User.findAll();
+            console.log(users);
+    
+            return res.json({status: true, message: "Постинг произведен успешно"});
+            
+        } catch(e) {
+            console.log(e);
+            return res.json({status: false, message: "Ой! Ошибка на сервере"});
+        }
     }
 
     async getSize(req, res) {
@@ -66,8 +72,8 @@ class controller {
 
     async addGroup(req, res) {
         try {
-            const {id, type} = req.body;
-            const group = await Groups.create({id : id, type: type});
+            const {groupId, type} = req.body;
+            const group = await Groups.create({groupId : groupId, type: type});
             return res.json({status: true, message: "Группа успешно добавлена"});
         } catch(e) {
             console.log(e);
@@ -90,7 +96,7 @@ class controller {
         try {
             const {appId, token} = req.body;
             const app = await AppData.create({appId : appId, token: token});
-            return res.json({status: true, message: "Данные успешно обновленны"});
+            return res.json({status: true, message: "Данные успешно обновлены"});
         } catch(e) {
             console.log(e);
             return res.json({status: false, message: "Ой! Ошибка на сервере"});
